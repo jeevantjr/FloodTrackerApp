@@ -1,0 +1,22 @@
+{
+  "name": "OutbreakWatch: Community Health Early Warning",
+  "short_name": "OutbreakWatch",
+  "description": "A low-resource PWA for community-level symptom reporting and outbreak detection.",
+  "start_url": "/OutbreakWatch/index.html",
+  "display": "standalone",
+  "background_color": "#004080",
+  "theme_color": "#004080",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "images/aaa.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/aaa.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

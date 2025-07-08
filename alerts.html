@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Outbreak Alerts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f9ff;
+      margin: 0;
+      padding: 0;
+      color: #003366;
+    }
+
+    .navbar {
+      width: 100%;
+      background-color: #007acc;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1.2rem;
+      max-width: 1200px;
+      margin: auto;
+      color: #ffffff;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffcc00;
+    }
+
+    main {
+      padding: 6rem 1rem 2rem;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 1rem;
+    }
+
+    .table-container {
+      background: white;
+      border-radius: 12px;
+      overflow-x: auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007acc;
+      color: white;
+    }
+
+    tr.safe {
+      background-color: #e8f5e9;
+    }
+
+    tr.warning {
+      background-color: #fff8e1;
+    }
+
+    tr.danger {
+      background-color: #ffebee;
+    }
+
+    .icon {
+      font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #003366;
+      padding: 1rem;
+      background-color: #e0f7fa;
+      border-top: 1px solid #b3e5fc;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        background-color: #007acc;
+        padding: 0.5rem 1rem;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">OutbreakWatch</div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="report.html">Report Symptoms</a>
+        <a href="alerts.html">Alerts</a>
+        <a href="analytics.html">Data Dashboard</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <h2>🚨 Live Outbreak Summary</h2>
+    <div class="table-container">
+      <table id="alertTable">
+        <thead>
+          <tr>
+            <th>GN Division</th>
+            <th>Fever</th>
+            <th>Rash</th>
+            <th>Alert</th>
+            <th>Alert Score</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 OutbreakWatch. Powered by Community Health Intelligence.</p>
+  </footer>
+
+  <!-- PapaParse Logic -->
+  <script>
+    const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQCyDH0ByMx_728zKrtJ5OI5ZsKQKjplFJNPWE78eUT2vD3WCHwFn3rFPbYYVlbiEn95Brxsdz_v9zy/pub?gid=917947109&single=true&output=csv";
+
+    Papa.parse(csvUrl, {
+      download: true,
+      header: true,
+      complete: function(results) {
+        const data = results.data;
+        const tableBody = document.querySelector("#alertTable tbody");
+
+        data.forEach(row => {
+          const gn = row["GN Division"]?.trim();
+          const fever = row["Fever"] || "0";
+          const rash = row["Rash"] || "0";
+          const alert = row["Alert message"]?.trim() || "";
+          const score = row["Alert Score"] || "";
+
+          if (!gn) return;
+
+          let rowClass = "safe";
+          let icon = "🟢";
+
+          if (alert.includes("Possible")) {
+            rowClass = "danger";
+            icon = "🔴";
+          } else if (alert.includes("Warning")) {
+            rowClass = "warning";
+            icon = "🟠";
+          }
+
+          const tr = document.createElement("tr");
+          tr.className = rowClass;
+
+          tr.innerHTML = `
+            <td>${gn}</td>
+            <td>${fever}</td>
+            <td>${rash}</td>
+            <td class="icon">${icon} ${alert}</td>
+            <td>${score}</td>
+          `;
+          tableBody.appendChild(tr);
+        });
+      }
+    });
+
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>
+
