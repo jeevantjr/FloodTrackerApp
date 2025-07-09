@@ -28,6 +28,26 @@
       text-align: center;
     }
 
+    .nav-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 1.5rem;
+    }
+
+    .nav-buttons a {
+      background-color: #0077cc;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .nav-buttons a:hover {
+      background-color: #005fa3;
+    }
+
     label {
       display: block;
       margin-top: 1rem;
@@ -72,9 +92,15 @@
   <div class="container">
     <h1>🌊 Submit Flood Report</h1>
 
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons">
+      <a href="index.html">🏠 Home</a>
+      <a href="dashboard.html">📊 View Dashboard</a>
+    </div>
+
     <form action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="_self">
       <!-- Replace YOUR_FORM_ID with your Google Form ID -->
-      
+
       <label for="location">Location / GN Division</label>
       <input type="text" name="entry.1111111111" id="location" placeholder="Eg: Trincomalee - Town & Gravets" required />
 
@@ -95,7 +121,7 @@
       <textarea name="entry.4444444444" id="description" rows="4" placeholder="Optional – more info about the damage or people affected"></textarea>
 
       <label for="reporter">Reporter Name (optional)</label>
-      <input type="text" name="entry.5555555555" id="reporter" placeholder="Anonymous or initials"/>
+      <input type="text" name="entry.5555555555" id="reporter" placeholder="Anonymous or initials" />
 
       <label for="contact">Contact (optional)</label>
       <input type="text" name="entry.6666666666" id="contact" placeholder="Phone or Email (optional)" />
