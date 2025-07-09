@@ -4,131 +4,149 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0077cc" />
-  <title>FedWatch: Flood Response</title>
-
-  <!-- Manifest & Icon -->
   <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="images/flood-icon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="images/flood-icon.png" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-
+  <link rel="icon" href="images/flood-icon.png" />
+  <title>FedWatch: FloodTrackerApp</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
+      font-family: Arial, sans-serif;
       background: linear-gradient(#e0f7fa, #ffffff);
+      margin: 0;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      padding-top: 6rem;
-      text-align: center;
-      color: #004d66;
+      color: #003366;
     }
 
-    .header {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
+    .container {
+      max-width: 800px;
+      width: 100%;
+      padding: 1rem;
+    }
+
+    h1 {
       color: #0077cc;
+      text-align: center;
+      font-size: 2.4em;
+      margin-bottom: 0.5rem;
     }
 
-    .subheader {
-      font-size: 1.2rem;
-      color: #005f99;
-      margin-bottom: 2rem;
+    h2 {
+      color: #005fa3;
+      margin-top: 2rem;
     }
 
-    .icon {
-      width: 110px;
-      height: auto;
-      margin-bottom: 1rem;
-      border-radius: 16px;
+    p, li {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    ul, ol {
+      padding-left: 1.5rem;
     }
 
     .btn {
       background-color: #0077cc;
       color: white;
-      padding: 12px 24px;
-      margin: 10px;
-      font-size: 1rem;
+      padding: 1em 2em;
+      margin: 1em 0.5em;
       border: none;
       border-radius: 8px;
+      font-size: 1em;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease;
+      display: inline-block;
+      transition: background-color 0.3s;
     }
 
     .btn:hover {
       background-color: #005fa3;
     }
 
-    #installContainer {
-      margin-top: 1.5rem;
-    }
-
-    #refreshPrompt {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 9999;
-    }
-
-    #refreshPrompt button {
-      background-color: #ffcc00;
-      color: #000;
-      font-weight: bold;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-      cursor: pointer;
+    .icon {
+      width: 100px;
+      height: auto;
+      margin-bottom: 1rem;
     }
 
     footer {
-      margin-top: auto;
-      background: #f0fbff;
-      border-top: 1px solid #aee8f5;
-      padding: 1rem;
-      font-size: 0.9rem;
-      width: 100%;
       text-align: center;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #b0e0e6;
+      color: #555;
     }
   </style>
 </head>
-
 <body>
-  <img src="images/flood-icon.png" alt="FedWatch Icon" class="icon" />
-  <div class="header">FedWatch</div>
-  <div class="subheader">Community Flood Reporting & Alerts</div>
+  <div class="container">
+    <img src="images/flood-icon.png" alt="FedWatch Icon" class="icon" />
+    <h1>FedWatch: Community Flood Tracker</h1>
 
-  <a href="flood-report.html" class="btn">📝 Submit Flood Report</a>
-  <a href="dashboard.html" class="btn">📊 View Dashboard</a>
+    <div style="text-align:center; margin-bottom: 2rem;">
+      <a href="flood-report.html" class="btn">📤 Submit Flood Report</a>
+      <a href="dashboard.html" class="btn">📊 View Dashboard</a>
+    </div>
 
-  <!-- App Install Button -->
-  <div id="installContainer">
-    <button id="installBtn" class="btn">📲 Install FedWatch App</button>
+    <h2>🌍 What is FedWatch?</h2>
+    <p>
+      <strong>FedWatch</strong> is a free, offline-ready, community-powered flood response and reporting system.
+      It helps rural citizens and local officials track flooding impacts, alert responders, and restore environmental data lost during emergencies.
+    </p>
+
+    <h2>🚀 Key Features</h2>
+    <ul>
+      <li>🌐 Works offline and syncs automatically</li>
+      <li>📱 Installable on Android & iOS (no app store required)</li>
+      <li>📍 Report with GPS, timestamp, and severity</li>
+      <li>📊 Local dashboards for responders</li>
+      <li>⚠️ Automatic alerts when thresholds are crossed</li>
+    </ul>
+
+    <h2>🛠️ How to Use</h2>
+    <ol>
+      <li>Click “Submit Flood Report” to report incidents</li>
+      <li>Click “View Dashboard” to see community alerts</li>
+      <li>Tap “Install” (in browser) to use it offline like an app</li>
+    </ol>
+
+    <h2>💡 Why It Matters</h2>
+    <p>
+      During floods, internet access, infrastructure, and national systems often collapse.
+      <strong>FedWatch works offline</strong> with a phone browser — making it ideal for emergency field response in remote or disaster-affected areas.
+    </p>
+
+    <h2>📂 Contribute or Customize</h2>
+    <p>
+      View the source code or adapt the system for your region at:
+      <a href="https://github.com/jeevantjr/FloodTrackerApp" target="_blank">GitHub.com/jeevantjr/FloodTrackerApp</a>
+    </p>
+
+    <footer>
+      <p>© 2025 FedWatch / FloodTrackerApp. Empowering local communities during climate emergencies.</p>
+    </footer>
   </div>
 
-  <!-- Refresh Prompt -->
-  <div id="refreshPrompt">
-    <button onclick="location.reload()">🔄 New Version Available - Refresh</button>
-  </div>
-
-  <footer>
-    <p>© 2025 FedWatch. Built for flood resilience and emergency response.</p>
-  </footer>
-
+  <!-- Service Worker Registration -->
   <script>
-    // iOS Detection for Safari Install Prompt
-    function isIOS() {
-      return /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('service-worker.js')
+          .then(reg => console.log('✅ Service worker registered:', reg.scope))
+          .catch(err => console.log('❌ Service worker registration failed:', err));
+      });
     }
 
+    // PWA Install Prompt
     let deferredPrompt;
-
-    window.ad
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      console.log('ℹ️ PWA install prompt captured.');
+    });
+  </script>
+</body>
+</html>
