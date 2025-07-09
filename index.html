@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,32 +13,80 @@
       font-family: Arial, sans-serif;
       background: linear-gradient(#e0f7fa, #ffffff);
       margin: 0;
-      padding: 2rem;
+      padding: 0;
+      color: #003366;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #0077cc;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 0.5em 1em;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    main {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: #003366;
+      padding: 2rem;
+      text-align: center;
     }
 
-    h1 {
-      color: #0077cc;
-      text-align: center;
-      font-size: 2.4em;
+    .icon {
+      width: 100px;
+      height: auto;
       margin-bottom: 1rem;
     }
 
-    p {
-      text-align: center;
+    main h2 {
+      font-size: 2em;
+      color: #0077cc;
+      margin-bottom: 1rem;
+    }
+
+    main p {
       max-width: 700px;
       font-size: 1.2rem;
       line-height: 1.6;
     }
 
     .btn {
-      background-color: #0077cc;
+      background-color: #28a745;
       color: white;
       padding: 1em 2em;
-      margin: 1em 0.5em;
+      margin: 2rem 0 1rem;
       border: none;
       border-radius: 8px;
       font-size: 1em;
@@ -48,99 +97,68 @@
     }
 
     .btn:hover {
-      background-color: #005fa3;
-    }
-
-    .icon {
-      width: 100px;
-      height: auto;
-      margin-bottom: 1rem;
+      background-color: #1e7e34;
     }
 
     footer {
       text-align: center;
       font-size: 0.9rem;
-      margin-top: 3rem;
-      padding-top: 1rem;
+      padding: 2rem 1rem;
       border-top: 1px solid #b0e0e6;
+      background-color: #f9f9f9;
       color: #555;
     }
 
+    footer a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
     #installContainer {
-      display: none;
-      margin-top: 1.5rem;
-      text-align: center;
+      margin-top: 2rem;
     }
 
-    #installBtn {
-      background-color: #28a745;
-    }
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-    #installBtn:hover {
-      background-color: #1e7e34;
+      nav a {
+        margin-bottom: 0.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <img src="images/flood-icon.png" alt="FedWatch Icon" class="icon" />
-  <h1>FedWatch: Community Flood Tracker</h1>
-  <p>
-    A lightweight, offline-ready reporting system for tracking floods in real time. Built for use in remote or disaster-hit areas where internet and infrastructure may fail.
-  </p>
+  <header>
+    <h1>🌊 FedWatch</h1>
+    <nav>
+      <a href="flood-report.html">📤 Submit Report</a>
+      <a href="dashboard.html">📊 View Dashboard</a>
+    </nav>
+  </header>
 
-  <a href="flood-report.html" class="btn">📤 Submit Flood Report</a>
-  <a href="dashboard.html" class="btn">📊 View Dashboard</a>
+  <main>
+    <img src="images/flood-icon.png" alt="FedWatch Icon" class="icon" />
+    <h2>Community Flood Tracker</h2>
+    <p>
+      A lightweight, offline-ready reporting system for tracking floods in real time. Built for use in remote or disaster-hit areas where internet and infrastructure may fail.
+    </p>
 
-  <!-- Install App Button -->
-  <div id="installContainer">
-    <button id="installBtn" class="btn">📲 Install FloodTracker App</button>
-  </div>
+    <div id="installContainer">
+      <button id="installBtn" class="btn">📲 Install FloodTracker App</button>
+    </div>
+  </main>
 
   <footer>
     <p>© 2025 FedWatch. Empowering local communities during climate emergencies.</p>
-  </footer>
-
-  <script>
-    let deferredPrompt;
-    const installContainer = document.getElementById('installContainer');
-    const installBtn = document.getElementById('installBtn');
-
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker
-          .register('service-worker.js')
-          .then(reg => console.log('✅ Service worker registered:', reg.scope))
-          .catch(err => console.log('❌ Service worker registration failed:', err));
-      });
-    }
-
-    // Capture PWA install prompt
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installContainer.style.display = 'block';
-
-      installBtn.addEventListener('click', () => {
-        installContainer.style.display = 'none';
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(choiceResult => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('✅ User accepted the install prompt');
-          } else {
-            console.log('❌ User dismissed the install prompt');
-          }
-          deferredPrompt = null;
-        });
-      });
-    });
-
-    // Hide install prompt after installation
-    window.addEventListener('appinstalled', () => {
-      console.log('✅ App installed');
-      installContainer.style.display = 'none';
-    });
-  </script>
-</body>
-</html>
-
+    <p>
+      This application is a public prototype for humanitarian use only. All flood risk data shown is simulated. For official information, consult your local disaster management agency.
+    </p>
+    <p>
+      Project Repository: <a href="https://github.com/jeevantjr/FloodTrackerApp" target="_blank">GitHub - FloodTrackerApp</a>_
