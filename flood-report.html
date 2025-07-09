@@ -2,63 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#0077cc"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0077cc" />
+  <meta name="description" content="Submit community flood reports for real-time disaster tracking with FedWatch." />
   <link rel="icon" href="images/flood-icon.png" />
   <title>Submit Flood Report | FedWatch</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f9ff;
       margin: 0;
-      padding: 1rem;
+      background-color: #f0f9ff;
+      color: #003366;
     }
 
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    }
-
-    h1 {
-      color: #0077cc;
-      text-align: center;
-    }
-
-    .nav-buttons {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 1.5rem;
-    }
-
-    .nav-buttons a {
+    header {
       background-color: #0077cc;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
       color: white;
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
-      font-size: 1rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav a {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 0.5em 1em;
+      border-radius: 6px;
+      color: white;
       text-decoration: none;
+      font-weight: bold;
       transition: background-color 0.3s;
     }
 
-    .nav-buttons a:hover {
-      background-color: #005fa3;
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    main {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+    }
+
+    main h2 {
+      text-align: center;
+      color: #0077cc;
+      margin-bottom: 1.5rem;
     }
 
     label {
       display: block;
       margin-top: 1rem;
       font-weight: bold;
-      color: #003366;
     }
 
     input, select, textarea {
       width: 100%;
       padding: 0.8rem;
-      margin-top: 0.5rem;
+      margin-top: 0.4rem;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 1rem;
@@ -74,6 +89,7 @@
       margin-top: 1.5rem;
       cursor: pointer;
       width: 100%;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
@@ -81,25 +97,45 @@
     }
 
     footer {
-      margin-top: 2rem;
       text-align: center;
       font-size: 0.9rem;
-      color: #777;
+      margin: 2rem auto 1rem;
+      color: #666;
+    }
+
+    footer a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 0.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🌊 Submit Flood Report</h1>
 
-    <!-- Navigation Buttons -->
-    <div class="nav-buttons">
+  <header>
+    <h1>🌊 FedWatch</h1>
+    <nav>
       <a href="index.html">🏠 Home</a>
-      <a href="dashboard.html">📊 View Dashboard</a>
-    </div>
+      <a href="dashboard.html">📊 Dashboard</a>
+    </nav>
+  </header>
 
-    <form action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="_self">
-      <!-- Replace YOUR_FORM_ID with your Google Form ID -->
+  <main>
+    <h2>Submit Flood Report</h2>
+
+    <form action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="_self" aria-label="Flood Report Form">
+      <!-- Replace YOUR_FORM_ID with your actual Google Form ID -->
 
       <label for="location">Location / GN Division</label>
       <input type="text" name="entry.1111111111" id="location" placeholder="Eg: Trincomalee - Town & Gravets" required />
@@ -128,10 +164,14 @@
 
       <button type="submit">📤 Submit Report</button>
     </form>
+  </main>
 
-    <footer>
-      <p>Data will sync to the local dashboard and may be used for emergency planning.</p>
-    </footer>
-  </div>
+  <footer>
+    <p>
+      Reports are submitted anonymously and used to help local planners respond to flood emergencies. <br/>
+      <a href="privacy.html">Privacy Policy</a> • <a href="terms.html">Terms of Use</a>
+    </p>
+  </footer>
+
 </body>
 </html>
