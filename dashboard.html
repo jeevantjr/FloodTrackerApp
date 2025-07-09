@@ -1,205 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0077cc" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="images/flood-icon.png" />
-  <title>FloodTracker Dashboard | FedWatch</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(#e0f7fa, #ffffff);
-      margin: 0;
-      color: #003366;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0077cc" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="images/flood-icon.png" />
+<title>FedWatch: Dashboard</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4faff;
+    margin: 0;
+    padding: 0;
+    color: #003366;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
-    header {
-      background-color: #0077cc;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+  header {
+    background-color: #0077cc;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 
-    header h1 {
-      margin: 0;
-      font-size: 1.5rem;
+  header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  nav a:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  main h2 {
+    text-align: center;
+    color: #0077cc;
+    margin-bottom: 1rem;
+  }
+
+  .section {
+    margin: 2rem 0;
+  }
+
+  .section h3 {
+    color: #28a745;
+    border-bottom: 2px solid #b0e0e6;
+    padding-bottom: 0.3rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+
+  th, td {
+    border: 1px solid #b0e0e6;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: #e0f7fa;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 2rem 1rem;
+    border-top: 1px solid #b0e0e6;
+    background-color: #f9f9f9;
+    color: #555;
+  }
+
+  footer a {
+    color: #0077cc;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     nav a {
-      background-color: rgba(255, 255, 255, 0.2);
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      color: white;
-      text-decoration: none;
-      margin-left: 0.5rem;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-
-    nav a:hover {
-      background-color: rgba(255, 255, 255, 0.4);
-    }
-
-    main {
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .table-container {
-      width: 100%;
-      max-width: 1000px;
-      overflow-x: auto;
-      background-color: #ffffffcc;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 0.5rem;
     }
 
     table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 1rem;
+      font-size: 0.85rem;
     }
-
-    th, td {
-      padding: 0.8rem;
-      border-bottom: 1px solid #ccc;
-      text-align: left;
-    }
-
-    th {
-      background-color: #0077cc;
-      color: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 1;
-    }
-
-    tr:hover {
-      background-color: #f1f9ff;
-    }
-
-    .severity-low {
-      color: green;
-      font-weight: bold;
-    }
-
-    .severity-moderate {
-      color: orange;
-      font-weight: bold;
-    }
-
-    .severity-severe {
-      color: red;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      margin: 2rem auto 1rem;
-      color: #555;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
+<header>
+  <h1>📊 FedWatch</h1>
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="flood-report.html">🌊 Flood Report</a>
+    <a href="health-report.html">🩺 Health Report</a>
+    <a href="education-report.html">🏫 Education Report</a>
+  </nav>
+</header>
 
-  <header>
-    <h1>📊 FloodTracker Dashboard</h1>
-    <nav>
-      <a href="index.html">🏠 Home</a>
-      <a href="flood-report.html">📤 Submit Report</a>
-    </nav>
-  </header>
+<main>
+  <h2>Community Reports Dashboard</h2>
+  <p style="text-align:center;">An overview of recent reports from your community across all domains.</p>
 
-  <main>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Location</th>
-            <th>Water Level (m)</th>
-            <th>Severity</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>2025-07-09</td>
-            <td>Kuchchaveli (8.8664, 81.0502)</td>
-            <td>0.6</td>
-            <td class="severity-low">Low</td>
-            <td>Minor ponding near community center</td>
-          </tr>
-          <tr>
-            <td>2025-07-09</td>
-            <td>Seruwila (8.5872, 81.2647)</td>
-            <td>2.8</td>
-            <td class="severity-severe">Severe</td>
-            <td>Bridge access lost, school closed</td>
-          </tr>
-          <tr>
-            <td>2025-07-08</td>
-            <td>Kinniya (8.4503, 81.1376)</td>
-            <td>2.5</td>
-            <td class="severity-severe">Severe</td>
-            <td>10 homes affected, 3 people displaced</td>
-          </tr>
-          <tr>
-            <td>2025-07-08</td>
-            <td>Trincomalee (8.5861, 81.2152)</td>
-            <td>1.2</td>
-            <td class="severity-moderate">Moderate</td>
-            <td>Main road partially flooded</td>
-          </tr>
-          <tr>
-            <td>2025-07-07</td>
-            <td>Muttur (8.4500, 81.2667)</td>
-            <td>0.8</td>
-            <td class="severity-low">Low</td>
-            <td>Drainage blocked</td>
-          </tr>
-          <tr>
-            <td>2025-07-06</td>
-            <td>Eachchilampattu (8.3, 81.5)</td>
-            <td>3.1</td>
-            <td class="severity-severe">Severe</td>
-            <td>Evacuation support required for 2 GN divisions</td>
-          </tr>
-          <tr>
-            <td>2025-07-06</td>
-            <td>Nilaveli (8.7267, 81.1808)</td>
-            <td>1.0</td>
-            <td class="severity-moderate">Moderate</td>
-            <td>Shops temporarily closed, road flooded</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
+  <div class="section">
+    <h3>🌊 Flood Reports</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Description</th>
+          <th>Reported On</th>
+        </tr>
+      </thead>
+      <tbody id="floodReports">
+        <tr><td>Sample City</td><td>River overflow near main bridge.</td><td>2025-07-09</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-  <footer>
-    <p>© 2025 FedWatch | Real-time flood data for local responders. | <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></p>
-  </footer>
+  <div class="section">
+    <h3>🩺 Health Alerts</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Reported On</th>
+        </tr>
+      </thead>
+      <tbody id="healthReports">
+        <tr><td>Northside Clinic</td><td>Disease Outbreak</td><td>Influenza-like illness cluster.</td><td>2025-07-09</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker
-          .register('service-worker.js')
-          .then(reg => console.log('✅ Service worker registered:', reg.scope))
-          .catch(err => console.log('❌ Service worker registration failed:', err));
-      });
-    }
-  </script>
+  <div class="section">
+    <h3>🏫 Education & Public Safety</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Reported On</th>
+        </tr>
+      </thead>
+      <tbody id="educationReports">
+        <tr><td>Central High School</td><td>Closure</td><td>School closed due to power outage.</td><td>2025-07-09</td></tr>
+      </tbody>
+    </table>
+  </div>
+</main>
 
+<footer>
+  <p>© 2025 FedWatch. Visualizing community resilience in real-time.</p>
+  <p>For official data, please consult your local agencies.</p>
+</footer>
+
+<script>
+// Placeholder for integrating dynamic data later
+</script>
 </body>
 </html>
-
