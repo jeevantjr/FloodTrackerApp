@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#0077cc"/>
+  <link rel="icon" href="images/flood-icon.png" />
+  <title>Submit Flood Report | FedWatch</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f9ff;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #0077cc;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #003366;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌊 Submit Flood Report</h1>
+
+    <form action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="_self">
+      <!-- Replace YOUR_FORM_ID with your Google Form ID -->
+      
+      <label for="location">Location / GN Division</label>
+      <input type="text" name="entry.1111111111" id="location" placeholder="Eg: Trincomalee - Town & Gravets" required />
+
+      <label for="waterlevel">Water Level (in feet or meters)</label>
+      <input type="text" name="entry.2222222222" id="waterlevel" placeholder="Eg: 3.5 ft" required />
+
+      <label for="damage">Type of Damage</label>
+      <select name="entry.3333333333" id="damage" required>
+        <option value="" disabled selected>Select one</option>
+        <option>Home Flooded</option>
+        <option>Health Facility Affected</option>
+        <option>School Closed</option>
+        <option>Road Blocked</option>
+        <option>Power/Water Cut</option>
+      </select>
+
+      <label for="description">Additional Details</label>
+      <textarea name="entry.4444444444" id="description" rows="4" placeholder="Optional – more info about the damage or people affected"></textarea>
+
+      <label for="reporter">Reporter Name (optional)</label>
+      <input type="text" name="entry.5555555555" id="reporter" placeholder="Anonymous or initials"/>
+
+      <label for="contact">Contact (optional)</label>
+      <input type="text" name="entry.6666666666" id="contact" placeholder="Phone or Email (optional)" />
+
+      <button type="submit">📤 Submit Report</button>
+    </form>
+
+    <footer>
+      <p>Data will sync to the local dashboard and may be used for emergency planning.</p>
+    </footer>
+  </div>
+</body>
+</html>
