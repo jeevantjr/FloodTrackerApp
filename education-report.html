@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0077cc" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="images/flood-icon.png" />
+<title>FedWatch: Report Education Alert</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(#f9f9ff, #ffffff);
+    margin: 0;
+    padding: 0;
+    color: #003366;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  header {
+    background-color: #0077cc;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  nav a:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  form {
+    background-color: #f1f9ff;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  form h2 {
+    margin-top: 0;
+    color: #0077cc;
+  }
+
+  label {
+    display: block;
+    margin: 1rem 0 0.3rem;
+    text-align: left;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #b0e0e6;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #1e7e34;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 2rem 1rem;
+    border-top: 1px solid #b0e0e6;
+    background-color: #f9f9f9;
+    color: #555;
+  }
+
+  footer a {
+    color: #0077cc;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    nav a {
+      margin-bottom: 0.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🏫 FedWatch</h1>
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="flood-report.html">🌊 Flood Report</a>
+    <a href="health-report.html">🩺 Health Report</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+  </nav>
+</header>
+
+<main>
+  <form id="educationForm">
+    <h2>Report an Education or Public Safety Alert</h2>
+    <p>Please fill in the details below to report school closures, public safety notices, or education-related disruptions in your area.</p>
+
+    <label for="location">📍 Location:</label>
+    <input type="text" id="location" name="location" placeholder="School, City, or District" required>
+
+    <label for="type">📝 Type of Alert:</label>
+    <select id="type" name="type" required>
+      <option value="">-- Select --</option>
+      <option value="Closure">School Closure</option>
+      <option value="Safety">Public Safety Incident</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label for="description">📄 Description:</label>
+    <textarea id="description" name="description" rows="4" placeholder="Describe the situation..." required></textarea>
+
+    <label for="contact">📞 Your Contact (optional):</label>
+    <input type="text" id="contact" name="contact" placeholder="Email or phone">
+
+    <button type="submit">Submit Alert</button>
+  </form>
+</main>
+
+<footer>
+  <p>© 2025 FedWatch. Empowering communities through education and safety awareness.</p>
+  <p>This form is for community reporting only. For emergencies, contact local authorities directly.</p>
+</footer>
+
+<script>
+document.getElementById('educationForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  alert("✅ Thank you for submitting your education/public safety alert.");
+  this.reset();
+});
+</script>
+</body>
+</html>
