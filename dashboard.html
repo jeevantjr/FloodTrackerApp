@@ -12,24 +12,50 @@
       font-family: Arial, sans-serif;
       background: linear-gradient(#e0f7fa, #ffffff);
       margin: 0;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       color: #003366;
     }
 
-    h1 {
-      color: #0077cc;
-      margin-bottom: 1rem;
-      text-align: center;
+    header {
+      background-color: #0077cc;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      color: white;
+      text-decoration: none;
+      margin-left: 0.5rem;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    main {
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .table-container {
       width: 100%;
-      max-width: 900px;
+      max-width: 1000px;
       overflow-x: auto;
-      margin-top: 1.5rem;
       background-color: #ffffffcc;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -52,81 +78,115 @@
       color: #fff;
       position: sticky;
       top: 0;
+      z-index: 1;
     }
 
     tr:hover {
       background-color: #f1f9ff;
     }
 
-    .btn {
-      background-color: #0077cc;
-      color: white;
-      padding: 0.6rem 1.2rem;
-      margin: 1rem 0.5rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1em;
-      cursor: pointer;
-      text-decoration: none;
+    .severity-low {
+      color: green;
+      font-weight: bold;
     }
 
-    .btn:hover {
-      background-color: #005fa3;
+    .severity-moderate {
+      color: orange;
+      font-weight: bold;
+    }
+
+    .severity-severe {
+      color: red;
+      font-weight: bold;
     }
 
     footer {
       text-align: center;
       font-size: 0.9rem;
-      margin-top: 3rem;
+      margin: 2rem auto 1rem;
       color: #555;
     }
   </style>
 </head>
 <body>
-  <h1>📊 Flood Report Dashboard</h1>
 
-  <a href="flood-report.html" class="btn">📤 Submit New Report</a>
-  <a href="index.html" class="btn">🏠 Back to Home</a>
+  <header>
+    <h1>📊 FloodTracker Dashboard</h1>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="flood-report.html">📤 Submit Report</a>
+    </nav>
+  </header>
 
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Location</th>
-          <th>Water Level (m)</th>
-          <th>Severity</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2025-07-08</td>
-          <td>Trincomalee (8.5861, 81.2152)</td>
-          <td>1.2</td>
-          <td style="color: orange;">Moderate</td>
-          <td>Main road partially flooded</td>
-        </tr>
-        <tr>
-          <td>2025-07-08</td>
-          <td>Kinniya (8.4503, 81.1376)</td>
-          <td>2.5</td>
-          <td style="color: red;">Severe</td>
-          <td>10 homes affected, 3 people displaced</td>
-        </tr>
-        <tr>
-          <td>2025-07-07</td>
-          <td>Muttur (8.4500, 81.2667)</td>
-          <td>0.8</td>
-          <td style="color: green;">Low</td>
-          <td>Drainage blocked</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <main>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Water Level (m)</th>
+            <th>Severity</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025-07-09</td>
+            <td>Kuchchaveli (8.8664, 81.0502)</td>
+            <td>0.6</td>
+            <td class="severity-low">Low</td>
+            <td>Minor ponding near community center</td>
+          </tr>
+          <tr>
+            <td>2025-07-09</td>
+            <td>Seruwila (8.5872, 81.2647)</td>
+            <td>2.8</td>
+            <td class="severity-severe">Severe</td>
+            <td>Bridge access lost, school closed</td>
+          </tr>
+          <tr>
+            <td>2025-07-08</td>
+            <td>Kinniya (8.4503, 81.1376)</td>
+            <td>2.5</td>
+            <td class="severity-severe">Severe</td>
+            <td>10 homes affected, 3 people displaced</td>
+          </tr>
+          <tr>
+            <td>2025-07-08</td>
+            <td>Trincomalee (8.5861, 81.2152)</td>
+            <td>1.2</td>
+            <td class="severity-moderate">Moderate</td>
+            <td>Main road partially flooded</td>
+          </tr>
+          <tr>
+            <td>2025-07-07</td>
+            <td>Muttur (8.4500, 81.2667)</td>
+            <td>0.8</td>
+            <td class="severity-low">Low</td>
+            <td>Drainage blocked</td>
+          </tr>
+          <tr>
+            <td>2025-07-06</td>
+            <td>Eachchilampattu (8.3, 81.5)</td>
+            <td>3.1</td>
+            <td class="severity-severe">Severe</td>
+            <td>Evacuation support required for 2 GN divisions</td>
+          </tr>
+          <tr>
+            <td>2025-07-06</td>
+            <td>Nilaveli (8.7267, 81.1808)</td>
+            <td>1.0</td>
+            <td class="severity-moderate">Moderate</td>
+            <td>Shops temporarily closed, road flooded</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
 
   <footer>
-    <p>© 2025 FedWatch / FloodTrackerApp | Real-time flood data for rapid response.</p>
+    <p>© 2025 FedWatch | Real-time flood data for local responders. | <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></p>
   </footer>
 
   <script>
@@ -139,6 +199,7 @@
       });
     }
   </script>
+
 </body>
 </html>
 
