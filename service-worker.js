@@ -4,11 +4,13 @@ const OFFLINE_URL = 'index.html';
 const PRECACHE_ASSETS = [
   'index.html',
   'flood-report.html',
+  'health-report.html',
+  'education-report.html',
   'dashboard.html',
   'manifest.json',
   'images/flood-icon.png',
-  'styles.css',           // if you use a separate CSS file
-  'scripts.js'            // if you use a separate JS file
+  'styles.css',       // if used
+  'scripts.js'        // if used
 ];
 
 // Install event: Pre-cache static assets
@@ -47,9 +49,7 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request).then((cached) => {
       return (
         cached ||
-        fetch(event.request).catch(() =>
-          caches.match(OFFLINE_URL)
-        )
+        fetch(event.request).catch(() => caches.match(OFFLINE_URL))
       );
     })
   );
