@@ -4,122 +4,141 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0077cc" />
-  <title>FedWatch Dashboard</title>
+  <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="images/flood-icon.png" />
+  <title>FloodTracker Dashboard | FedWatch</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2f9ff;
+      background: linear-gradient(#e0f7fa, #ffffff);
       margin: 0;
-      padding: 1rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       color: #003366;
     }
 
     h1 {
-      text-align: center;
       color: #0077cc;
       margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .table-container {
+      width: 100%;
+      max-width: 900px;
+      overflow-x: auto;
+      margin-top: 1.5rem;
+      background-color: #ffffffcc;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     table {
-      border-collapse: collapse;
       width: 100%;
-      max-width: 1000px;
-      margin: auto;
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      border-collapse: collapse;
+      font-size: 1rem;
     }
 
     th, td {
-      padding: 0.8rem 1rem;
-      border-bottom: 1px solid #eee;
+      padding: 0.8rem;
+      border-bottom: 1px solid #ccc;
       text-align: left;
     }
 
     th {
       background-color: #0077cc;
-      color: white;
-      font-weight: 600;
+      color: #fff;
+      position: sticky;
+      top: 0;
     }
 
     tr:hover {
-      background-color: #f1f1f1;
+      background-color: #f1f9ff;
+    }
+
+    .btn {
+      background-color: #0077cc;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      margin: 1rem 0.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #005fa3;
     }
 
     footer {
       text-align: center;
       font-size: 0.9rem;
-      margin-top: 2rem;
+      margin-top: 3rem;
       color: #555;
-    }
-
-    @media (max-width: 600px) {
-      th, td {
-        font-size: 0.85rem;
-        padding: 0.6rem;
-      }
     }
   </style>
 </head>
 <body>
-  <h1>📊 FedWatch: Flood Reports Dashboard</h1>
-  <table id="reportTable">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Location</th>
-        <th>Water Level</th>
-        <th>Damage Type</th>
-        <th>Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td colspan="5">Loading data...</td></tr>
-    </tbody>
-  </table>
+  <h1>📊 Flood Report Dashboard</h1>
+
+  <a href="flood-report.html" class="btn">📤 Submit New Report</a>
+  <a href="index.html" class="btn">🏠 Back to Home</a>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Water Level (m)</th>
+          <th>Severity</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2025-07-08</td>
+          <td>Trincomalee (8.5861, 81.2152)</td>
+          <td>1.2</td>
+          <td style="color: orange;">Moderate</td>
+          <td>Main road partially flooded</td>
+        </tr>
+        <tr>
+          <td>2025-07-08</td>
+          <td>Kinniya (8.4503, 81.1376)</td>
+          <td>2.5</td>
+          <td style="color: red;">Severe</td>
+          <td>10 homes affected, 3 people displaced</td>
+        </tr>
+        <tr>
+          <td>2025-07-07</td>
+          <td>Muttur (8.4500, 81.2667)</td>
+          <td>0.8</td>
+          <td style="color: green;">Low</td>
+          <td>Drainage blocked</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <footer>
-    <p>Data sourced from field reports submitted via FedWatch PWA</p>
+    <p>© 2025 FedWatch / FloodTrackerApp | Real-time flood data for rapid response.</p>
   </footer>
 
   <script>
-    // REPLACE with your published Google Apps Script web app URL that returns JSON
-    const DATA_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
-
-    async function loadData() {
-      try {
-        const res = await fetch(DATA_URL);
-        const json = await res.json();
-
-        const tableBody = document.querySelector('#reportTable tbody');
-        tableBody.innerHTML = ''; // Clear loading row
-
-        json.data.forEach(entry => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${entry.date || '-'}</td>
-            <td>${entry.location || '-'}</td>
-            <td>${entry.water || '-'}</td>
-            <td>${entry.damage || '-'}</td>
-            <td>${entry.details || '-'}</td>
-          `;
-          tableBody.appendChild(row);
-        });
-
-        if (json.data.length === 0) {
-          tableBody.innerHTML = `<tr><td colspan="5">No reports yet.</td></tr>`;
-        }
-
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        document.querySelector('#reportTable tbody').innerHTML =
-          '<tr><td colspan="5">⚠️ Unable to load data.</td></tr>';
-      }
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('service-worker.js')
+          .then(reg => console.log('✅ Service worker registered:', reg.scope))
+          .catch(err => console.log('❌ Service worker registration failed:', err));
+      });
     }
-
-    loadData();
   </script>
 </body>
 </html>
+
