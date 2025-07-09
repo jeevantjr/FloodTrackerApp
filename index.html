@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,7 @@
   <meta name="theme-color" content="#0077cc" />
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="images/flood-icon.png" />
-  <title>FedWatch: FloodTrackerApp</title>
+  <title>FedWatch: Community Resilience App</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -82,6 +81,29 @@
       line-height: 1.6;
     }
 
+    .domains {
+      margin: 2rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .domain-card {
+      background-color: #f1f9ff;
+      border: 1px solid #b0e0e6;
+      border-radius: 8px;
+      padding: 1rem;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .domain-card:hover {
+      transform: scale(1.05);
+    }
+
     .btn {
       background-color: #28a745;
       color: white;
@@ -136,31 +158,55 @@
 </head>
 <body>
   <header>
-    <h1>🌊 FedWatch</h1>
+    <h1>🌐 FedWatch</h1>
     <nav>
-      <a href="flood-report.html">📤 Submit Report</a>
-      <a href="dashboard.html">📊 View Dashboard</a>
-      <a href="privacy.html">Privacy Notice</a>
-       <a href="terms.html">Terms</a>
+      <a href="flood-report.html">📤 Report Flood</a>
+      <a href="health-report.html">🩺 Report Health Alert</a>
+      <a href="education-report.html">🏫 Report School Closure</a>
+      <a href="dashboard.html">📊 Dashboard</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
     </nav>
   </header>
 
   <main>
     <img src="images/flood-icon.png" alt="FedWatch Icon" class="icon" />
-    <h2>Community Flood Tracker</h2>
+    <h2>Community Resilience Tracker</h2>
     <p>
-      A lightweight, offline-ready reporting system for tracking floods in real time. Built for use in remote or disaster-hit areas where internet and infrastructure may fail.
+      FedWatch is a lightweight, offline-ready reporting and monitoring system 
+      for tracking emergencies across key domains: climate (floods), public health, 
+      and education. Built for use in remote or disaster-hit areas where internet and infrastructure may fail.
     </p>
 
+    <div class="domains">
+      <div class="domain-card">
+        <h3>🌊 Climate: Floods</h3>
+        <p>Report, view, and monitor flood conditions in real time.</p>
+      </div>
+      <div class="domain-card">
+        <h3>🩺 Public Health</h3>
+        <p>Track and report health alerts such as outbreaks or critical needs.</p>
+      </div>
+      <div class="domain-card">
+        <h3>🏫 Education & Public Safety</h3>
+        <p>Stay informed about school closures and public safety notices.</p>
+      </div>
+    </div>
+
     <div id="installContainer">
-      <button id="installBtn" class="btn">📲 Install FloodTracker App</button>
+      <button id="installBtn" class="btn">📲 Install FedWatch App</button>
     </div>
   </main>
 
   <footer>
-    <p>© 2025 FedWatch. Empowering local communities during climate emergencies.</p>
+    <p>© 2025 FedWatch. Empowering local communities during emergencies.</p>
     <p>
-      This application is a public prototype for humanitarian use only. All flood risk data shown is simulated. For official information, consult your local disaster management agency.
+      This application is a public prototype for humanitarian use only. All data shown may include simulated data. For official information, consult your local agencies.
     </p>
     <p>
-      Project Repository: <a href="https://github.com/jeevantjr/FloodTrackerApp" target="_blank">GitHub - FloodTrackerApp</a>_
+      Project Repository: <a href="https://github.com/jeevantjr/FloodTrackerApp" target="_blank">GitHub - FedWatch</a>
+    </p>
+  </footer>
+</body>
+</html>
+
