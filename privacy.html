@@ -7,21 +7,55 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 2rem;
-      line-height: 1.6;
+      margin: 0;
       background-color: #f4f9fb;
       color: #003366;
+      line-height: 1.6;
     }
 
-    h1 {
+    header {
+      background-color: #0077cc;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      margin: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: bold;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h2 {
       color: #0077cc;
-      text-align: center;
-      margin-bottom: 1rem;
+      margin-top: 2rem;
     }
 
     p {
-      max-width: 800px;
-      margin: 0 auto 1rem;
+      margin-bottom: 1rem;
     }
 
     footer {
@@ -30,66 +64,72 @@
       font-size: 0.9rem;
       color: #666;
       border-top: 1px solid #cce7f0;
-      padding-top: 1rem;
+      padding: 1rem 0;
     }
 
     a {
       color: #0077cc;
     }
   </style>
-  <nav>
-      <a href="index.html">🏠 Home</a>
-      <a href="dashboard.html">📊 Dashboard</a>
-    </nav>
 </head>
 <body>
 
-  <h1>Privacy Policy</h1>
+  <header>
+    <h1>🔐 Privacy Policy</h1>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="flood-report.html">📤 Submit</a>
+      <a href="dashboard.html">📊 Dashboard</a>
+      <a href="terms.html">📄 Terms</a>
+    </nav>
+  </header>
 
-  <p><strong>Last Updated:</strong> July 9, 2025</p>
+  <main>
+    <p><strong>Last Updated:</strong> July 9, 2025</p>
 
-  <p>
-    The <strong>FloodTrackerApp (FedWatch)</strong> is a public prototype developed to support flood awareness and response in disaster-prone or low-connectivity regions. This application is currently hosted for public demonstration and testing purposes only.
-  </p>
+    <p>
+      The <strong>FloodTrackerApp (FedWatch)</strong> is a public prototype developed to support flood awareness and response in disaster-prone or low-connectivity regions. This application is currently hosted for public demonstration and testing purposes only.
+    </p>
 
-  <h2>1. Data Collection</h2>
-  <p>
-    This app does <strong>not</strong> collect any personally identifiable information (PII), such as names, phone numbers, GPS location, or email addresses.
-  </p>
-  <p>
-    If you submit a flood report, the app may temporarily record general observations such as date, zone/area, and report type. All submissions are anonymous and stored locally in your browser or offline app cache.
-  </p>
+    <h2>1. Data Collection</h2>
+    <p>
+      This app does <strong>not</strong> collect any personally identifiable information (PII), such as names, phone numbers, GPS location, or email addresses.
+    </p>
+    <p>
+      If you submit a flood report, the app may temporarily record general observations such as date, zone/area, and report type. All submissions are anonymous and stored locally in your browser or offline app cache.
+    </p>
 
-  <h2>2. Cookies and Analytics</h2>
-  <p>
-    This site does <strong>not</strong> use cookies, trackers, or third-party analytics tools. No browsing behavior is monitored, shared, or sold.
-  </p>
+    <h2>2. Cookies and Analytics</h2>
+    <p>
+      This site does <strong>not</strong> use cookies, trackers, or third-party analytics tools. No browsing behavior is monitored, shared, or sold.
+    </p>
 
-  <h2>3. Offline Storage</h2>
-  <p>
-    As a Progressive Web App (PWA), FloodTrackerApp may store certain assets (e.g., map tiles, form templates) locally to enable offline functionality. These assets do not contain personal data.
-  </p>
+    <h2>3. Offline Storage</h2>
+    <p>
+      As a Progressive Web App (PWA), FloodTrackerApp may store certain assets (e.g., map tiles, form templates) locally to enable offline functionality. These assets do not contain personal data.
+    </p>
 
-  <h2>4. Third-Party Services</h2>
-  <p>
-    The app uses open-source libraries such as Leaflet.js for mapping. Map tiles may be loaded from public tile providers (e.g., OpenStreetMap), which may log basic usage data for performance/security (e.g., IP, browser type).
-  </p>
+    <h2>4. Third-Party Services</h2>
+    <p>
+      The app uses open-source libraries such as Leaflet.js for mapping. Map tiles may be loaded from public tile providers (e.g., OpenStreetMap), which may log basic usage data for performance/security (e.g., IP, browser type).
+    </p>
 
-  <h2>5. Intellectual Property</h2>
-  <p>
-    All submissions remain the intellectual property of the submitter. However, by submitting information, users grant the app developers permission to use aggregated, anonymized data for research, development, or public health initiatives.
-  </p>
+    <h2>5. Intellectual Property</h2>
+    <p>
+      All submissions remain the intellectual property of the submitter. However, by submitting information, users grant the app developers permission to use aggregated, anonymized data for research, development, or public health initiatives.
+    </p>
 
-  <h2>6. Updates and Revisions</h2>
-  <p>
-    This privacy policy may be updated from time to time to reflect changes in functionality or compliance with HeroX challenge guidelines. The latest version will always be accessible via this page.
-  </p>
+    <h2>6. Updates and Revisions</h2>
+    <p>
+      This privacy policy may be updated from time to time to reflect changes in functionality or compliance with HeroX challenge guidelines. The latest version will always be accessible via this page.
+    </p>
 
-  <h2>7. Contact</h2>
-  <p>
-    For questions or feedback, please contact us at:<br />
-    📧 <a href="mailto:rdhstrinco.stats@gmail.com">rdhstrinco.stats@gmail.com</a>
-  </p>
+    <h2>7. Contact</h2>
+    <p>
+      For questions or feedback, please contact us at:<br />
+      📧 <a href="mailto:rdhstrinco.stats@gmail.com">rdhstrinco.stats@gmail.com</a>
+    </p>
+  </main>
 
   <footer>
     © 2025 FedWatch. Built for the HeroX Data-to-Dust Challenge. No user data is stored or shared.
