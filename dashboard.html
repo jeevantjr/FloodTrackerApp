@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0077cc" />
+  <title>FedWatch Dashboard</title>
+  <link rel="icon" href="images/flood-icon.png" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f9ff;
+      margin: 0;
+      padding: 1rem;
+      color: #003366;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0077cc;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+
+    th {
+      background-color: #0077cc;
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      color: #555;
+    }
+
+    @media (max-width: 600px) {
+      th, td {
+        font-size: 0.85rem;
+        padding: 0.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>📊 FedWatch: Flood Reports Dashboard</h1>
+  <table id="reportTable">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Location</th>
+        <th>Water Level</th>
+        <th>Damage Type</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="5">Loading data...</td></tr>
+    </tbody>
+  </table>
+
+  <footer>
+    <p>Data sourced from field reports submitted via FedWatch PWA</p>
+  </footer>
+
+  <script>
+    // REPLACE with your published Google Apps Script web app URL that returns JSON
+    const DATA_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+
+    async function loadData() {
+      try {
+        const res = await fetch(DATA_URL);
+        const json = await res.json();
+
+        const tableBody = document.querySelector('#reportTable tbody');
+        tableBody.innerHTML = ''; // Clear loading row
+
+        json.data.forEach(entry => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${entry.date || '-'}</td>
+            <td>${entry.location || '-'}</td>
+            <td>${entry.water || '-'}</td>
+            <td>${entry.damage || '-'}</td>
+            <td>${entry.details || '-'}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+
+        if (json.data.length === 0) {
+          tableBody.innerHTML = `<tr><td colspan="5">No reports yet.</td></tr>`;
+        }
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        document.querySelector('#reportTable tbody').innerHTML =
+          '<tr><td colspan="5">⚠️ Unable to load data.</td></tr>';
+      }
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
