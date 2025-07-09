@@ -19,31 +19,18 @@
       color: #003366;
     }
 
-    .container {
-      max-width: 800px;
-      width: 100%;
-      padding: 1rem;
-    }
-
     h1 {
       color: #0077cc;
       text-align: center;
       font-size: 2.4em;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
 
-    h2 {
-      color: #005fa3;
-      margin-top: 2rem;
-    }
-
-    p, li {
-      font-size: 1.1rem;
+    p {
+      text-align: center;
+      max-width: 700px;
+      font-size: 1.2rem;
       line-height: 1.6;
-    }
-
-    ul, ol {
-      padding-left: 1.5rem;
     }
 
     .btn {
@@ -78,59 +65,47 @@
       border-top: 1px solid #b0e0e6;
       color: #555;
     }
+
+    #installContainer {
+      display: none;
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+
+    #installBtn {
+      background-color: #28a745;
+    }
+
+    #installBtn:hover {
+      background-color: #1e7e34;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="images/flood-icon.png" alt="FedWatch Icon" class="icon" />
-    <h1>FedWatch: Community Flood Tracker</h1>
+  <img src="images/flood-icon.png" alt="FedWatch Icon" class="icon" />
+  <h1>FedWatch: Community Flood Tracker</h1>
+  <p>
+    A lightweight, offline-ready reporting system for tracking floods in real time. Built for use in remote or disaster-hit areas where internet and infrastructure may fail.
+  </p>
 
-    <div style="text-align:center; margin-bottom: 2rem;">
-      <a href="flood-report.html" class="btn">📤 Submit Flood Report</a>
-      <a href="dashboard.html" class="btn">📊 View Dashboard</a>
-    </div>
+  <a href="flood-report.html" class="btn">📤 Submit Flood Report</a>
+  <a href="dashboard.html" class="btn">📊 View Dashboard</a>
 
-    <h2>🌍 What is FedWatch?</h2>
-    <p>
-      <strong>FedWatch</strong> is a free, offline-ready, community-powered flood response and reporting system.
-      It helps rural citizens and local officials track flooding impacts, alert responders, and restore environmental data lost during emergencies.
-    </p>
-
-    <h2>🚀 Key Features</h2>
-    <ul>
-      <li>🌐 Works offline and syncs automatically</li>
-      <li>📱 Installable on Android & iOS (no app store required)</li>
-      <li>📍 Report with GPS, timestamp, and severity</li>
-      <li>📊 Local dashboards for responders</li>
-      <li>⚠️ Automatic alerts when thresholds are crossed</li>
-    </ul>
-
-    <h2>🛠️ How to Use</h2>
-    <ol>
-      <li>Click “Submit Flood Report” to report incidents</li>
-      <li>Click “View Dashboard” to see community alerts</li>
-      <li>Tap “Install” (in browser) to use it offline like an app</li>
-    </ol>
-
-    <h2>💡 Why It Matters</h2>
-    <p>
-      During floods, internet access, infrastructure, and national systems often collapse.
-      <strong>FedWatch works offline</strong> with a phone browser — making it ideal for emergency field response in remote or disaster-affected areas.
-    </p>
-
-    <h2>📂 Contribute or Customize</h2>
-    <p>
-      View the source code or adapt the system for your region at:
-      <a href="https://github.com/jeevantjr/FloodTrackerApp" target="_blank">GitHub.com/jeevantjr/FloodTrackerApp</a>
-    </p>
-
-    <footer>
-      <p>© 2025 FedWatch / FloodTrackerApp. Empowering local communities during climate emergencies.</p>
-    </footer>
+  <!-- Install App Button -->
+  <div id="installContainer">
+    <button id="installBtn" class="btn">📲 Install FloodTracker App</button>
   </div>
 
-  <!-- Service Worker Registration -->
+  <footer>
+    <p>© 2025 FedWatch. Empowering local communities during climate emergencies.</p>
+  </footer>
+
   <script>
+    let deferredPrompt;
+    const installContainer = document.getElementById('installContainer');
+    const installBtn = document.getElementById('installBtn');
+
+    // Register service worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker
@@ -140,13 +115,32 @@
       });
     }
 
-    // PWA Install Prompt
-    let deferredPrompt;
+    // Capture PWA install prompt
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      console.log('ℹ️ PWA install prompt captured.');
+      installContainer.style.display = 'block';
+
+      installBtn.addEventListener('click', () => {
+        installContainer.style.display = 'none';
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(choiceResult => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('✅ User accepted the install prompt');
+          } else {
+            console.log('❌ User dismissed the install prompt');
+          }
+          deferredPrompt = null;
+        });
+      });
+    });
+
+    // Hide install prompt after installation
+    window.addEventListener('appinstalled', () => {
+      console.log('✅ App installed');
+      installContainer.style.display = 'none';
     });
   </script>
 </body>
 </html>
+
