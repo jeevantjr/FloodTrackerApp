@@ -7,6 +7,12 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="images/flood-icon.png" />
   <title>FedWatch: Community Resilience App</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -144,6 +150,15 @@
       margin-top: 2rem;
     }
 
+    #map {
+      height: 400px;
+      width: 100%;
+      max-width: 800px;
+      margin: 2rem auto;
+      border: 2px solid #b0e0e6;
+      border-radius: 10px;
+    }
+
     @media (max-width: 600px) {
       nav {
         flex-direction: column;
@@ -193,6 +208,9 @@
       </div>
     </div>
 
+    <!-- Leaflet Map -->
+    <div id="map"></div>
+
     <div id="installContainer">
       <button id="installBtn" class="btn">📲 Install FedWatch App</button>
     </div>
@@ -207,6 +225,21 @@
       Project Repository: <a href="https://github.com/jeevantjr/FloodTrackerApp" target="_blank">GitHub - FedWatch</a>
     </p>
   </footer>
+
+  <script>
+    // Initialize Leaflet Map
+    var map = L.map('map').setView([7.8731, 80.7718], 7); // Centered on Sri Lanka
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Add a sample marker (demo)
+    var demoMarker = L.marker([7.3, 81.6]).addTo(map)
+      .bindPopup("<b>Flood Report:</b><br>Moderate flooding in Trincomalee.")
+      .openPopup();
+  </script>
 </body>
 </html>
 
